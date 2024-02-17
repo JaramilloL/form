@@ -35,6 +35,14 @@ const Form = () => {
                 required: {
                     value: true,
                     message: 'Please enter your name'
+                },
+                minLength:{
+                    value: 10,
+                    message: 'Please enter a more than 10 characters'
+                },
+                maxLength: {
+                    value: 50,
+                    message: 'Please enter at least 50 characters'
                 }
             })
           }
@@ -74,6 +82,18 @@ const Form = () => {
                 required: {
                     value: true,
                     message: 'Please enter your password'
+                },
+                minLength: {
+                    value: 5,
+                    message: 'Please enter more than 5 characters'
+                },
+                maxLength: {
+                    value: 55,
+                    message: 'Please enter less than 55 characters'
+                },
+                pattern: {
+                    value: [/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]$/],
+                    message: 'Please add Minimum 5 characters, maximum 20 characters, at least one lowercase letter, at least one uppercase letter, at least one number.'
                 }
             })
           }
@@ -148,12 +168,21 @@ const Form = () => {
           <input
             className="form-check-input border-primary"
             type="checkbox"
-            value=""
+            name='check'
             id="flexCheckDefault"
+            {
+                ...register('check', {
+                    required: {
+                        value: true,
+                        message: 'Check is required'
+                    }
+                })
+            }
           />
           <label className="form-check-label" htmlFor="flexCheckDefault">
             Accept terms
           </label>
+        <p className='text-danger text-center'>{ errors?.check?.message }</p>
         </div>
       </div>
 
